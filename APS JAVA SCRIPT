@@ -1,3 +1,8 @@
+//JAVA SCRIPT
+//963R
+// Marcos de Aquino Batista da Cruz
+// 2024101089
+
 //verificar se o número é divisivel por 2
 // Função para verificar se um número é primo
 function fVerificarPrimo(num) {
