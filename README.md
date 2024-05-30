@@ -1,0 +1,62 @@
+//verificar se o número é divisivel por 2
+// Função para verificar se um número é primo
+function fVerificarPrimo(num) {
+    // Números menores que 2 não são primos
+    if (num < 2) {
+        return false;
+    }
+    // O número 2 é o único número primo par
+    if (num === 2) {
+        return true;
+    }
+    // Números pares maiores que 2 não são primos
+    if (num % 2 === 0) {
+        return false;
+    }
+    // Loop para verificar divisores ímpares do número até a raiz quadrada de 'num'
+    // Incrementa de 2 em 2 para verificar apenas números ímpares
+    for (let i = 3; i <= Math.sqrt(num); i += 2) {
+        // Se 'num' for divisível por 'i', então não é primo
+        if (num % i === 0) {
+            return false;
+        }
+    }
+    // Se nenhum divisor foi encontrado, 'num' é primo
+    return true;
+}
+
+// Função para imprimir os 'qtde' maiores números primos menores ou iguais a 'num'
+function fImprimir_K_Maiores_Primos(num, qtde) {
+    let contador = 0; // Contador de números primos encontrados
+    let currentNumber = num; // Número atual para verificação
+    let primosEncontrados = []; // Array para armazenar os números primos encontrados
+
+    // Loop até encontrar a quantidade necessária de números primos ou até que currentNumber seja menor que 2
+    while (contador < qtde && currentNumber >= 2) {
+        // Verifica se o número atual é primo
+        if (fVerificarPrimo(currentNumber)) {
+            // Adiciona o número primo ao array
+            primosEncontrados.push(currentNumber);
+            // Incrementa o contador de primos encontrados
+            contador++;
+        }
+        // Decrementa o número atual para verificar o próximo número menor
+        currentNumber--;
+    }
+
+    // Se foram encontrados números primos, imprime os resultados
+    if (primosEncontrados.length > 0) {
+        console.log("Os " + qtde + " maiores números primos menores ou iguais a " + num + " são:");
+        console.log(primosEncontrados.join(', '));
+    } else {
+        // Caso contrário, informa que nenhum número primo foi encontrado
+        console.log("Não foram encontrados números primos menores ou iguais a " + num + ".");
+    }
+}
+
+// Solicita ao usuário um número e o converte para um inteiro
+let numero = parseInt(prompt("Digite um número"));
+// Define a quantidade de números primos a serem encontrados
+let qtdePrimos = 10;
+// Chama a função para imprimir os maiores números primos menores ou iguais ao número fornecido
+fImprimir_K_Maiores_Primos(numero, qtdePrimos);
